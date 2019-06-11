@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/drumbot/static/css/main.9dd2b164.chunk.css",
+    "main.js": "/drumbot/static/js/main.53198c70.chunk.js",
+    "main.js.map": "/drumbot/static/js/main.53198c70.chunk.js.map",
+    "runtime~main.js": "/drumbot/static/js/runtime~main.5f960664.js",
+    "runtime~main.js.map": "/drumbot/static/js/runtime~main.5f960664.js.map",
+    "static/js/2.302ee91e.chunk.js": "/drumbot/static/js/2.302ee91e.chunk.js",
+    "static/js/2.302ee91e.chunk.js.map": "/drumbot/static/js/2.302ee91e.chunk.js.map",
+    "index.html": "/drumbot/index.html",
+    "precache-manifest.c047f86c9d7416c602c3b8ff7f5aba2e.js": "/drumbot/precache-manifest.c047f86c9d7416c602c3b8ff7f5aba2e.js",
+    "service-worker.js": "/drumbot/service-worker.js",
+    "static/css/main.9dd2b164.chunk.css.map": "/drumbot/static/css/main.9dd2b164.chunk.css.map"
+  }
+}
