@@ -1,0 +1,272 @@
+.DrumMachine {
+  position: relative;
+  background-color: #222222;
+  padding: 20px 20px 35px 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+  box-shadow: 1px 3px 0 #555555, 3px 1px 0 #999999;
+  margin: auto 5px;
+  color: white;
+  min-height: 600px;
+}
+
+.DrumMachine a {
+  color: white;
+}
+
+.DrumMachine a:hover {
+  color: yellow;
+}
+
+@media (min-width: 920px) {
+  .DrumMachine {
+    margin: 30px auto;
+    width: 100%;
+    max-width: 900px;
+  }
+}
+.DrumMachine button {
+  background-color: #222222;
+  border: 2px solid #888888;
+  border-radius: 5px;
+  box-shadow: 1px 0 0 #ABCDEF, 0 1px 0 #FEDCAB;
+  transition: all 0.3s ease-in-out;
+  height: 40px;
+}
+
+
+.DrumMachine button:active {
+  background-color: yellow;
+  color: #222222;
+  box-shadow: -1px 0 0 #ABCDEF, 0 -1px 0 #FEDCAB;
+  transition: 0.01s ease-in-out;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button:disabled {
+  color: #444444;
+}
+
+.DrumMachine__TopPanel {
+  margin-bottom: 20px;
+}
+
+.DrumMachine__Logo {
+  flex: 1 0;
+}
+
+.DrumMachine__Title {
+  font-family: 'Righteous', monospace;
+  font-size: 32px;
+  text-align: left;
+  color: #AAAAAA;
+}
+
+.DrumMachine__SubTitle {
+  text-align: left;
+
+  font-family: 'Righteous', monospace;
+  font-size: 20px;
+  text-align: left;
+  color: white;
+}
+
+.DrumMachine__Controls {
+  flex: 1 0;
+  display: flex;
+  height: 40px;
+  flex-direction: column;
+}
+
+
+.DrumMachine__PatternSelector, .DrumMachine__Transport {
+  display: flex;
+  margin-top: 15px;
+}
+
+.DrumMachine__PatternSelector {
+  font-family: 'VT323', monospace;
+  font-weight: bold;
+  color: yellow;
+  font-size: 32px;
+  text-transform: uppercase;
+  height: 40px;
+}
+
+.DrumMachine__PatternButton button{
+  background: black;
+  font-family: 'VT323', monospace;
+  font-weight: bold;
+  color: yellow;
+  font-size: 32px;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.DrumMachine__PatternButton {
+  flex: 0 1 30px;
+}
+
+.DrumMachine__SelectedPattern {
+  background: black;
+  text-align: center;
+  background-color: #222222;
+  border: 2px solid #888888;
+  border-radius: 5px;
+  box-shadow: 1px 0 0 #ABCDEF, 0 1px 0 #FEDCAB;
+  transition: all 0.3s ease-in-out;
+  flex: 1 1 300px;
+  overflow: hidden;
+  padding: 0 15px;
+}
+
+@media (min-width: 800px) {
+  .DrumMachine__TopPanel, .DrumMachine__Controls {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    text-align: right;
+  }
+
+  .DrumMachine__PatternSelector {
+    margin-right: 20px;
+  }
+
+  .DrumMachine__SelectedPattern {
+    width: 150px;
+    max-width: 150px;
+  }
+}
+
+.DrumMachine__StartStopButton {
+  font-family: 'VT323', monospace;
+  font-weight: bold;
+  color: yellow;
+  font-size: 32px;
+  text-transform: uppercase;
+
+  min-width: 90px;
+  flex: 1 0;
+}
+
+.DrumMachine__StartStopButton:hover {
+  border-color: yellow;
+
+}
+
+.DrumMachine__Tracks {
+  max-width: 100%;
+}
+
+.DrumMachine__Track {
+  max-width: 100%;
+  padding: 10px;
+  margin: 10px auto;
+  background-color: #999;
+  border-radius: 5px;
+}
+
+.DrumMachine__TrackLabel {
+  flex: 0 0 1;
+  text-transform: uppercase;
+  text-align: left;
+  font-family: 'Righteous', monospace;
+  font-size: 18px;
+}
+
+.DrumMachine__TrackSteps {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+}
+
+
+.DrumMachine__Step {
+  margin: 1px;
+  border: 2px solid #AAAAAA;
+  height: 20px;
+  border-radius: 10px;
+  flex: 1 0;
+  background: #555555;
+  transition: border-color 950ms ease-out;
+  transition: background-color 400ms ease-out;
+}
+
+
+@media (min-width: 600px) {
+.DrumMachine__Step {
+    height: 50px;
+    margin: 2px;
+  }
+
+  .DrumMachine {
+    min-height: 600px;
+  }
+}
+
+.DrumMachine__Step--On {
+  background: #9999EE;
+  border: 2px solid #BBBBBB;
+  transition: background-color 500ms ease-out;
+}
+
+.DrumMachine__Step--Active {
+  border: 2px solid #DDAAAA;
+  background: #777777
+}
+
+.DrumMachine__Step--Active.DrumMachine__Step--On {
+  background: yellow;
+  transition: background-color 10ms !important;
+}
+
+.DrumMachine__GetStarted {
+  font-family: 'Righteous', monospace;
+  font-size: 20px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.DrumMachine__GetStarted button {
+  -webkit-animation: throb 1s infinite;
+  animation: throb 1s infinite;
+}
+.DrumMachine__GetStarted button:hover {
+  background-color: yellow;
+  color: black;
+}
+
+.DrumMachine__Footer {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.DrumMachine__FooterJoin {
+  flex: 1 0 auto;
+  text-align: left;
+}
+
+.DrumMachine__FooterFork {
+  flex: 1 0 auto;
+  text-align: right;
+}
+
+@-webkit-keyframes throb {
+  0% {-webkit-transform: scale(1);}
+  50% {-webkit-transform: scale(1.1);}
+}
+
+@keyframes throb {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.1);}
+}
