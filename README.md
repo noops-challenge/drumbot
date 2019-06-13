@@ -12,11 +12,11 @@ You can start with this or create your own from scratch.
 ### API
 Drumbot's API has the following methods:
 
-`GET /drum-machine/patterns`
+`GET /drumbot/patterns`
 
 Returns the list of available patterns
 
-`GET /drum-machine/patterns/{pattern-name}`
+`GET /drumbot/patterns/{pattern-name}`
 
 Returns a pattern.
 
