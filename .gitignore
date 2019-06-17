@@ -1,0 +1,8 @@
+elixir_drumbot/_build/
+elixir_drumbot/cover/
+elixir_drumbot/deps/
+elixir_drumbot/doc/
+elixir_drumbot/.fetch
+elixir_drumbot/erl_crash.dump
+elixir_drumbot/*.ez
+elixir_drumbot/drumbot-*.tar
