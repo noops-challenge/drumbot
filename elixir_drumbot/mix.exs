@@ -20,7 +20,12 @@ defmodule Drumbot.MixProject do
   defp deps do
     [
       {:httpoison, "~> 1.0", override: true},
-      {:poison, "~> 3.1"}
+			{:poison, "~> 3.1"},
+			{:membrane_core, "~> 0.3.0"},
+			{:membrane_element_file, "~> 0.2.3"},
+			{:membrane_element_portaudio, "~> 0.2.3"},
+			{:membrane_element_ffmpeg_swresample, "~> 0.2.3"},
+			{:membrane_element_mad, "~> 0.2.3"}
     ]
   end
 end
