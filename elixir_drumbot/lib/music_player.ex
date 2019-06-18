@@ -19,15 +19,29 @@ defmodule Drumbot.MusicPlayer do
 				index = get_index(current_index, song.steps)
 				tracks_to_play = play_tracks(index, song.tracks)
 				next_tracks_states = for {_instrument, track_state} <- tracks_to_play, do: track_state
-				IO.puts "Previous states: "
-				IO.inspect previous_tracks_states
-				IO.puts "Next states: "
-				IO.inspect next_tracks_states
-				IO.puts "[#{current}]/[#{song.duration}] [#{index}]"
+				#IO.puts "Previous states: "
+				#IO.inspect previous_tracks_states
+				#IO.puts "Next states: "
+				#IO.inspect next_tracks_states
+				IO.puts "[#{current}]/[#{song.duration}]"
+				p = play_sound(previous_tracks_states, tracks_to_play)
+				IO.inspect p
         {:noreply, {current+1, index+1, song, next_tracks_states}}
     end
     validate_max_time.(song.duration==current)
   end
+
+	def play_sound(previous_states, tracks_to_play) do
+		tracks = Enum.zip(previous_states, tracks_to_play)
+		for {previous_state, {instrument, next_state}} <- tracks do
+			turn_on = fn
+				{0,1} -> {:turn_on, instrument}
+				{1,0} -> {:turn_off, instrument}
+				_ -> {:continue, instrument}
+			end
+			turn_on.({previous_state, next_state})
+		end
+	end
 
   def handle_cast( {:play}, state) do
     loop()
