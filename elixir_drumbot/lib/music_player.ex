@@ -1,7 +1,7 @@
 defmodule Drumbot.MusicPlayer do
   use GenServer
 
- #{:timer, 10, 0}
+  #{:timer, 10, 0}
   def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state, name: __MODULE__)
 	def init(state), do: {:ok, state}
 
@@ -30,21 +30,3 @@ defmodule Drumbot.MusicPlayer do
 
 end
 
-
-###############################################################
-###############################################################
-#defmodule Drumbot.MusicPlayer do
-#  use GenServer
-#
-#  ### Client API / Helper functions
-#  def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state, name: __MODULE__)
-#	def init(state), do: {:ok, state}
-#
-#  def monitor, do: GenServer.call(__MODULE__, :monitor)
-#
-#  def handle_cast(:monitor, from, state) do
-#		IO.inspect from
-#    {:reply, :que_onda_putito, state}
-#  end
-#
-#end
