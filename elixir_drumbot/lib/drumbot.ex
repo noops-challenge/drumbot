@@ -1,18 +1,11 @@
 defmodule Drumbot do
-  @moduledoc """
-  Documentation for Drumbot.
-  """
+	alias Drumbot.Util
 
-  @doc """
-  Hello world.
+	def show_songs(), do: Util.get("/")
+	def play_song(song) do
+		"/#{song}"
+			|> Util.get()
+			|> Util.build_model()
+	end
 
-  ## Examples
-
-      iex> Drumbot.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
