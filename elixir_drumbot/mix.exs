@@ -13,7 +13,6 @@ defmodule Drumbot.MixProject do
 
   def application do
     [
-      mod: {Drumbot.Application, []},
       extra_applications: [:logger]
     ]
   end

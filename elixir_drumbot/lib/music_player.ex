@@ -1,15 +1,13 @@
 defmodule Drumbot.MusicPlayer do
   use GenServer
 
-  def start_link(), do: GenServer.start_link(__MODULE__, [], [name: __MODULE__])
-  def init(max_time) do
-    IO.inspect max_time
-    {:ok, {:timer, 10, 0} }
-  end
+ #{:timer, 10, 0}
+  def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state, name: __MODULE__)
+	def init(state), do: {:ok, state}
 
-  def assert(), do: GenServer.cast( __MODULE__, {:assert} )
-
+  def play(), do: GenServer.cast( __MODULE__, {:play} )
   def loop(), do: send self(), :loop
+
   def handle_info(:loop, state) do
     {:timer, max_time, current} = state
     validate_max_time = fn
@@ -25,11 +23,28 @@ defmodule Drumbot.MusicPlayer do
     validate_max_time.(max_time==current)
   end
 
-  def handle_cast( {:assert}, state) do
-    IO.puts "Empezando"
-    IO.inspect state
+  def handle_cast( {:play}, state) do
     loop()
     {:noreply, state}
   end
 
 end
+
+
+###############################################################
+###############################################################
+#defmodule Drumbot.MusicPlayer do
+#  use GenServer
+#
+#  ### Client API / Helper functions
+#  def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state, name: __MODULE__)
+#	def init(state), do: {:ok, state}
+#
+#  def monitor, do: GenServer.call(__MODULE__, :monitor)
+#
+#  def handle_cast(:monitor, from, state) do
+#		IO.inspect from
+#    {:reply, :que_onda_putito, state}
+#  end
+#
+#end
