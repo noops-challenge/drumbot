@@ -11,6 +11,7 @@ defmodule Drumbot.Util do
 	def build_model(song) do
 		%Song{
 			name: song["name"],
+			steps: song["stepCount"],
 			duration: song["beatsPerMinute"],
 			tracks: song["tracks"]
 		}
