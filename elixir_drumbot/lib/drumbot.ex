@@ -14,6 +14,7 @@ defmodule Drumbot do
 		%Drumbot.Song{
 			duration: 110,
 			name: "oontza",
+			steps: 16,
 			tracks: [
 				%{
 					"instrument" => "hihat",
@@ -29,7 +30,7 @@ defmodule Drumbot do
 				}
 			]
 		}
-		_ = MusicPlayer.start_link({0, song})
+		_ = MusicPlayer.start_link({0, 0, song})
 		MusicPlayer.play()
 	end
 
