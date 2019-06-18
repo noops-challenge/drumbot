@@ -1,7 +1,7 @@
 defmodule Drumbot.MusicPlayer do
   use GenServer
 	alias Drumbot.Pipeline
-  @instruments %{ "B.mp3" => "🎷", "E.mp3" => "🥁", "D.mp3" => "🎺", "C.mp3" => "🎸", "A.mp3" => "🎻"}
+  @instruments %{ "B.mp3" => "🎷", "E.mp3" => "🗣", "D.mp3" => "🎺", "C.mp3" => "🎸", "A.mp3" => "🎻"}
 
   def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state, name: __MODULE__)
 	def init(state), do: {:ok, state}
@@ -14,6 +14,7 @@ defmodule Drumbot.MusicPlayer do
     validate_max_time = fn
       true ->
         IO.puts "Song Finished!!!!"
+        Process.exit( self() , :kill)
         {:noreply, state}
       false ->
         :timer.sleep 1000
@@ -26,6 +27,8 @@ defmodule Drumbot.MusicPlayer do
         IO.puts "- - - - - - - - - - - - - - - - - - - - - "
         print_dj(current)
 				IO.puts "[#{current}]/[#{song.duration}]"
+        IO.puts "Made with Elixir"
+        IO.puts "\nTracks playing:"
         states_for_monitor |> Bunt.puts
         IO.puts "- - - - - - - - - - - - - - - - - - - - - "
         {:noreply, {current+1, index+1, song, next_tracks_states}}
@@ -36,7 +39,8 @@ defmodule Drumbot.MusicPlayer do
   def print_dj(current) do
     show_dj = fn
       0 ->
-        [:color201, "     .:: GitHub Meet the Noobs ::. \n"] |> Bunt.puts
+        [:color201, "     .:: GitHub Meet the Noobs ::. "] |> Bunt.puts
+        [:color201, "     M E E T - T H E - N O O B S \n"] |> Bunt.puts
         [:color154, "######  DJ Drumbot               /#####"] |> Bunt.puts
         [:color154, "#( )# |          _ 🧐__          | #( )#"] |> Bunt.puts
         [:color154, "##### |         /_    /         | #####"] |> Bunt.puts
