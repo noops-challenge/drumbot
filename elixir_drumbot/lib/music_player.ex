@@ -1,6 +1,7 @@
 defmodule Drumbot.MusicPlayer do
   use GenServer
 	alias Drumbot.Pipeline
+  @instruments %{ "B.mp3" => "🎷", "E.mp3" => "🥁", "D.mp3" => "🎺", "C.mp3" => "🎸", "A.mp3" => "🎻"}
 
   def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state, name: __MODULE__)
 	def init(state), do: {:ok, state}
@@ -16,16 +17,16 @@ defmodule Drumbot.MusicPlayer do
         {:noreply, state}
       false ->
         :timer.sleep 1000
+        IEx.Helpers.clear
         loop()
 				index = get_index(current_index, song.steps)
 				tracks_to_play = play_tracks(index, song.tracks)
 				next_tracks_states = for {_instrument, track_state} <- tracks_to_play, do: track_state
-				#IO.puts "Previous states: "
-				#IO.inspect previous_tracks_states
-				#IO.puts "Next states: "
-				#IO.inspect next_tracks_states
+				states_for_monitor = play_sound(previous_tracks_states, tracks_to_play)
+        IO.puts "- - - - - - - - - - - - - - - - - - - - - "
 				IO.puts "[#{current}]/[#{song.duration}]"
-				_sounds = play_sound(previous_tracks_states, tracks_to_play)
+        states_for_monitor |> Bunt.puts
+        IO.puts "- - - - - - - - - - - - - - - - - - - - - "
         {:noreply, {current+1, index+1, song, next_tracks_states}}
     end
     validate_max_time.(song.duration==current)
@@ -33,17 +34,21 @@ defmodule Drumbot.MusicPlayer do
 
 	def play_sound(previous_states, tracks_to_play) do
 		tracks = Enum.zip(previous_states, tracks_to_play)
-		for {previous_state, {instrument, next_state}} <- tracks do
-			turn_on = fn
-				{0,1} ->
-					{:ok, pid} = Pipeline.start_link(instrument)
-					_res = Pipeline.play(pid)
-					{:turn_on, instrument}
-				{1,0} -> {:turn_off, instrument}
-				_ -> {:continue, instrument}
-			end
-			turn_on.({previous_state, next_state})
-		end
+    monitor_status =
+		  for {previous_state, {instrument, next_state}} <- tracks do
+		  	turn_on = fn
+		  		{0,1} ->
+		  			{:ok, pid} = Pipeline.start_link(instrument)
+		  			_res = Pipeline.play(pid)
+            [:color228, " :: #{@instruments[instrument]} :: "]
+		  		{1,0} ->
+            [:color198, " ::   :: "]
+          _ ->
+            [:color198, " ::   :: "]
+		  	end
+		  	turn_on.({previous_state, next_state})
+		  end
+    List.flatten(monitor_status)
 	end
 
   def handle_cast( {:play}, state) do

@@ -25,7 +25,8 @@ defmodule Drumbot.MixProject do
 			{:membrane_element_file, "~> 0.2.3"},
 			{:membrane_element_portaudio, "~> 0.2.3"},
 			{:membrane_element_ffmpeg_swresample, "~> 0.2.3"},
-			{:membrane_element_mad, "~> 0.2.3"}
+			{:membrane_element_mad, "~> 0.2.3"},
+			{:bunt, "~> 0.1.0"}
     ]
   end
 end
