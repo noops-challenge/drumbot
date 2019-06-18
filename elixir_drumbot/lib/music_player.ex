@@ -24,6 +24,14 @@ defmodule Drumbot.MusicPlayer do
 				next_tracks_states = for {_instrument, track_state} <- tracks_to_play, do: track_state
 				states_for_monitor = play_sound(previous_tracks_states, tracks_to_play)
         IO.puts "- - - - - - - - - - - - - - - - - - - - - "
+        [:color201, "     .:: GitHub Meet the Noobs ::. \n"] |> Bunt.puts
+        [:color154, "######  DJ Drumbot _             /#####"] |> Bunt.puts
+        [:color154, "#( )# |          _( )__         | #( )#"] |> Bunt.puts
+        [:color154, "##### |         /_    /         | #####"] |> Bunt.puts
+        [:color154, "#   # |     ___m/I_ //_____     | #   #"] |> Bunt.puts
+        [:color154, "# O # |____#-x.\ /++m\ /.x-#____| # O #"] |> Bunt.puts
+        [:color154, "#m.m# |   // \ ///###\\\ / /\   | #m.m#"] |> Bunt.puts
+        [:color154, "#####/    ######/     \######    \#####"] |> Bunt.puts
 				IO.puts "[#{current}]/[#{song.duration}]"
         states_for_monitor |> Bunt.puts
         IO.puts "- - - - - - - - - - - - - - - - - - - - - "
