@@ -8,7 +8,8 @@ defmodule Drumbot do
 		"/#{song}"
 		  |> Util.get()
 		  |> Util.build_model()
-		_ = MusicPlayer.start_link({0, 0, song_for_play})
+		starter_states = Util.get_starter_states(song_for_play)
+		_ = MusicPlayer.start_link({0, 0, song_for_play, starter_states})
 		MusicPlayer.play()
 	end
 

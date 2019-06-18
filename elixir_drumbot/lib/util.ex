@@ -17,4 +17,9 @@ defmodule Drumbot.Util do
 		}
 	end
 
+	def get_starter_states(song) do
+		states = length(song.tracks)-1
+		Enum.map(0..states, fn _x -> 0 end)
+	end
+
 end

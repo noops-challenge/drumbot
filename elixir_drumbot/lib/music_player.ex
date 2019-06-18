@@ -8,7 +8,7 @@ defmodule Drumbot.MusicPlayer do
   def loop(), do: send self(), :loop
 
   def handle_info(:loop, state) do
-		{current, current_index, song} = state
+		{current, current_index, song, previous_tracks_states} = state
     validate_max_time = fn
       true ->
         IO.puts "Song Finished!!!!"
@@ -17,9 +17,14 @@ defmodule Drumbot.MusicPlayer do
         :timer.sleep 1000
         loop()
 				index = get_index(current_index, song.steps)
-				_tracks_to_play = play_tracks(index, song.tracks)
+				tracks_to_play = play_tracks(index, song.tracks)
+				next_tracks_states = for {_instrument, track_state} <- tracks_to_play, do: track_state
+				IO.puts "Previous states: "
+				IO.inspect previous_tracks_states
+				IO.puts "Next states: "
+				IO.inspect next_tracks_states
 				IO.puts "[#{current}]/[#{song.duration}] [#{index}]"
-        {:noreply, {current+1, index+1, song}}
+        {:noreply, {current+1, index+1, song, next_tracks_states}}
     end
     validate_max_time.(song.duration==current)
   end
