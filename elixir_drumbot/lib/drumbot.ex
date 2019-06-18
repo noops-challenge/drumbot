@@ -4,9 +4,12 @@ defmodule Drumbot do
 
 	def show_songs(), do: Util.get("/")
 	def play_song(song) do
+		song_for_play =
 		"/#{song}"
 		  |> Util.get()
 		  |> Util.build_model()
+		_ = MusicPlayer.start_link({0, 0, song_for_play})
+		MusicPlayer.play()
 	end
 
 	def fake_play() do
