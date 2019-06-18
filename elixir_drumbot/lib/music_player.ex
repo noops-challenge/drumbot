@@ -9,7 +9,8 @@ defmodule Drumbot.MusicPlayer do
   def loop(), do: send self(), :loop
 
   def handle_info(:loop, state) do
-    {:timer, max_time, current} = state
+		{current, song} = state
+		max_time = song.duration
     validate_max_time = fn
       true ->
         IO.puts "DONE!!"
@@ -18,7 +19,7 @@ defmodule Drumbot.MusicPlayer do
         :timer.sleep 1000
         loop()
         IO.puts "Max time: #{max_time} Seg: #{current}"
-        {:noreply, {:timer, max_time, current+1} }
+        {:noreply, {current+1, song}}
     end
     validate_max_time.(max_time==current)
   end
