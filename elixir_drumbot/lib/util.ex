@@ -2,7 +2,7 @@ defmodule Drumbot.Util do
 	alias Drumbot.Song
 
   @base_url "https://api.noopschallenge.com/drumbot/patterns"
-  @instruments ["A.mp3", "B.mp3", "C.mp3", "E.mp3", "D.mp3"]
+  @instruments ["B.mp3", "E.mp3", "D.mp3", "C.mp3", "A.mp3"]
 
   def get(uri) do
     {:ok, response} = HTTPoison.get("#{@base_url}#{uri}")

@@ -1,5 +1,6 @@
 defmodule Drumbot.MusicPlayer do
   use GenServer
+	alias Drumbot.Pipeline
 
   def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state, name: __MODULE__)
 	def init(state), do: {:ok, state}
@@ -24,8 +25,7 @@ defmodule Drumbot.MusicPlayer do
 				#IO.puts "Next states: "
 				#IO.inspect next_tracks_states
 				IO.puts "[#{current}]/[#{song.duration}]"
-				p = play_sound(previous_tracks_states, tracks_to_play)
-				IO.inspect p
+				_sounds = play_sound(previous_tracks_states, tracks_to_play)
         {:noreply, {current+1, index+1, song, next_tracks_states}}
     end
     validate_max_time.(song.duration==current)
@@ -35,7 +35,10 @@ defmodule Drumbot.MusicPlayer do
 		tracks = Enum.zip(previous_states, tracks_to_play)
 		for {previous_state, {instrument, next_state}} <- tracks do
 			turn_on = fn
-				{0,1} -> {:turn_on, instrument}
+				{0,1} ->
+					{:ok, pid} = Pipeline.start_link(instrument)
+					_res = Pipeline.play(pid)
+					{:turn_on, instrument}
 				{1,0} -> {:turn_off, instrument}
 				_ -> {:continue, instrument}
 			end
