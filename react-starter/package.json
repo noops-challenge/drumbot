@@ -5,7 +5,7 @@
   "homepage": "https://noops-challenge.github.io/drumbot/",
   "dependencies": {
     "gh-pages": "^2.0.1",
-    "lodash": ">=4.17.0",
+    "lodash": ">=4.17.21",
     "lodash.template": ">=4.5.0",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.1",
